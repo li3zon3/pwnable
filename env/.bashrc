@@ -112,6 +112,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# For my custom script and binary
 export PATH=$PATH:$HOME/pwnable/bin
 
 export PYENV_ROOT="$HOME/.pyenv"

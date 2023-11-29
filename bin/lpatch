@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# For patchelf
+export libc_path=/libc
+
+# Default values
+arch="64"
+version="2.34"
+program_name="my-program"
+
+# Parse command line arguments
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --arch)
+            arch="$2"
+            shift
+            ;;
+        --version)
+            libc_version="$2"
+            shift
+            ;;
+        --elf)
+            program_name="$2"
+            shift
+            ;;
+        *)
+            echo "Unknown parameter: $1"
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+# Check if program exists
+if [ ! -f "$program_name" ]; then
+    echo "Error: $program_name not found."
+    exit 1
+fi
+
+# Specify the source paths
+libc_source="$libc_path/$libc_version/$arch/libc.so.6"
+
+# Copy libc to the current directory
+cp "$libc_source" .
+
+# Run patchelf commands
+patchelf --replace-needed libc.so.6 libB "$program_name"
+patchelf --set-interpreter ./ldA.so "$program_name"
+
+echo "Patchelf commands executed successfully."
