@@ -21,7 +21,7 @@ you can open a file and pass to the fd you want like this
 ```
 
 # escape seccomp
-- exchange from amd64 into i386 to use difference number of 
+exchange from amd64 into i386 to use difference number of 
 ```console
 SYS_No of syscalls
     xor rsp, rsp
